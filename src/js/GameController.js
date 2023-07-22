@@ -42,13 +42,23 @@ export default class GameController {
   }
 
   setRandomActiveHole() {
-    this.gamePlay.deactivateHole(this.activeHole);
+    // провильнее делать так
+    // this.gamePlay.deactivateHole(this.activeHole);
+    // let newActiveHole = this.activeHole;
+    // while (newActiveHole === this.activeHole) {
+    //   newActiveHole = Math.floor(Math.random() * this.gamePlay.boardSize ** 2);
+    // }
+    // this.activeHole = newActiveHole;
+    // this.gamePlay.activateHole(this.activeHole);
+
+    // Согласно заданию нужно перемещать объеты DOM дерева
     let newActiveHole = this.activeHole;
     while (newActiveHole === this.activeHole) {
       newActiveHole = Math.floor(Math.random() * this.gamePlay.boardSize ** 2);
     }
+
     this.activeHole = newActiveHole;
-    this.gamePlay.activateHole(this.activeHole);
+    this.gamePlay.replaceMole(this.activeHole);
   }
 
   onCellClick(index) {

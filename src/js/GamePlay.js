@@ -41,6 +41,7 @@ export default class GamePlay {
     for (let i = 0; i < this.boardSize ** 2; i += 1) {
       const cellEl = document.createElement('div');
       cellEl.classList.add('hole', 'cell');
+      cellEl.setAttribute('id', `hole${i}`);
       cellEl.addEventListener('click', (event) => this.onCellClick(event));
       this.boardEl.appendChild(cellEl);
     }
@@ -65,6 +66,32 @@ export default class GamePlay {
   deactivateHole(position) {
     if (position >= 0 && position < this.boardSize ** 2) {
       this.boardEl.children[position].classList.remove('hole_has-mole');
+    }
+  }
+
+  activeHole() {
+    const mole = this.container.querySelector('.hole_has-mole');
+    this.cells.indexOf(mole);
+  }
+
+  replaceMole(position) {
+    if (position >= 0 && position < this.boardSize ** 2) {
+      const mole = this.container.querySelector('.hole_has-mole');
+      if (mole === null) {
+        // Инициализация. Присвоим текущей ячейки класс hole_has-mole
+        this.activateHole(position);
+      } else {
+        // меняем местами ячейки
+        const targetCell = this.boardEl.children[position];
+
+        const moleIndex = this.cells.indexOf(mole);
+
+        if (moleIndex !== position) {
+          this.boardEl.insertBefore(targetCell, mole);
+          this.boardEl.insertBefore(mole, this.boardEl.children[position]);
+          this.cells = Array.from(this.boardEl.children);
+        }
+      }
     }
   }
 

@@ -1,11 +1,8 @@
-// TODO: write code here
+import GamePlay from './GamePlay';
+import GameController from './GameController';
 
-// comment this to pass build
-const unusedVariable = "variable";
+const gamePlay = new GamePlay();
+gamePlay.bindToDOM(document.querySelector('#game-container'));
 
-// for demonstration purpose only
-export default function demo(value) {
-  return `Demo: ${value}`;
-}
-
-console.log("app.js included");
+const gameCtrl = new GameController(gamePlay);
+gameCtrl.init();

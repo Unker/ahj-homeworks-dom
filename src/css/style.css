@@ -1,3 +1,64 @@
+:root {
+  --cell-size: 64px;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 body {
-    color: #999;
+  background: #000;
+  font-size: 16px;
+}
+
+.controls {
+  text-align: center;
+  margin: 50px 0;
+}
+
+.board-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 2px;
+  grid-row-gap: 2px;
+}
+
+.cell {
+  position: relative;
+}
+
+.hole {
+  width: 150px;
+  height: 150px;
+  margin: 0 15px 30px;
+  background: gray;
+  border-radius: 50%;
+}
+
+.hole_has-mole {
+  background-image: url(../img/goblin.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: brown;
+}
+
+.scores {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.score {
+  color: white;
+  font-size: 18px;
 }

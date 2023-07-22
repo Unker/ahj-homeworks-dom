@@ -5,7 +5,7 @@ export default class GameController {
     this._lost = 0;
     this.activeHole = -1;
     this.playing = false;
-    this.timeActiveHole = 700;
+    this.timeActiveHole = 1000;
   }
 
   init() {
@@ -43,7 +43,11 @@ export default class GameController {
 
   setRandomActiveHole() {
     this.gamePlay.deactivateHole(this.activeHole);
-    this.activeHole = Math.floor(Math.random() * this.gamePlay.boardSize ** 2);
+    let newActiveHole = this.activeHole;
+    while (newActiveHole === this.activeHole) {
+      newActiveHole = Math.floor(Math.random() * this.gamePlay.boardSize ** 2);
+    }
+    this.activeHole = newActiveHole;
     this.gamePlay.activateHole(this.activeHole);
   }
 
